@@ -15,6 +15,8 @@ export type JusticeCardProps = {
   primaryReasoning?: string;
   analogousCases?: string[];
   defaultExpanded?: boolean;
+  /** Dense exchange-style panel */
+  variant?: "court" | "terminal";
   className?: string;
 };
 
@@ -49,23 +51,34 @@ export function JusticeCard({
   primaryReasoning,
   analogousCases,
   defaultExpanded = false,
+  variant = "court",
   className,
 }: JusticeCardProps) {
   const [expanded, setExpanded] = React.useState(defaultExpanded);
   const pct = Math.round(Math.max(0, Math.min(1, confidence)) * 100);
   const styles = voteStyles(vote);
+  const terminal = variant === "terminal";
 
   return (
     <motion.div
       layout
       className={cn(
-        "group relative overflow-hidden rounded-xs border border-gold-muted bg-[rgba(10,10,15,0.65)]",
-        "backdrop-blur-[3px]",
-        styles.glow,
+        "group relative overflow-hidden rounded-xs border backdrop-blur-[3px]",
+        terminal
+          ? "border-terminal-line bg-terminal-panel/90"
+          : "border-gold-muted bg-[rgba(10,10,15,0.65)]",
+        !terminal && styles.glow,
         className,
       )}
     >
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-gold/25 to-transparent opacity-70" />
+      <div
+        className={cn(
+          "pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r opacity-70",
+          terminal
+            ? "from-transparent via-terminal-up/30 to-transparent"
+            : "from-transparent via-gold/25 to-transparent",
+        )}
+      />
       <div
         className={cn(
           "pointer-events-none absolute inset-0 opacity-60",
@@ -130,7 +143,10 @@ export function JusticeCard({
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.22, ease: "easeOut" }}
-              className="mt-4 overflow-hidden border-t border-[var(--divider)] pt-3"
+              className={cn(
+                "mt-4 overflow-hidden border-t pt-3",
+                terminal ? "border-terminal-line" : "border-[var(--divider)]",
+              )}
             >
               {primaryReasoning ? (
                 <p className="font-body text-[12px] leading-6 text-ink-muted">

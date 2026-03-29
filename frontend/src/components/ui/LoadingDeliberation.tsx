@@ -20,17 +20,20 @@ export function LoadingDeliberation({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "rounded-xs border border-[var(--divider)] bg-[rgba(10,10,15,0.55)] p-6",
+        "rounded-xs border border-terminal-line bg-terminal-panel/70 p-6",
         className,
       )}
     >
       <div className="flex items-center justify-between gap-6">
         <div>
-          <div className="font-heading text-[18px] tracking-[0.12em] text-gold">
-            THE BENCH IS DELIBERATING...
+          <div className="font-mono text-[10px] tracking-[0.22em] text-terminal-up">
+            MULTI-AGENT DELIBERATION
           </div>
-          <div className="mt-2 font-mono text-[11px] tracking-[0.16em] text-ink-faint">
-            PARALLEL ANALYSIS · NINE CHAMBERS
+          <div className="mt-2 font-heading text-[17px] tracking-[0.1em] text-ink">
+            Streaming nine justice models…
+          </div>
+          <div className="mt-2 font-mono text-[10px] tracking-[0.16em] text-ink-faint">
+            LOG TRACES · SSE /api/analysis/stream — eval-first harness
           </div>
         </div>
 
@@ -59,7 +62,7 @@ export function LoadingDeliberation({ className }: { className?: string }) {
                 <motion.span
                   className={cn(
                     "absolute -bottom-1 h-[6px] w-[6px] rounded-full",
-                    done ? "bg-gold" : "bg-white/20",
+                    done ? "bg-terminal-up" : "bg-white/20",
                   )}
                   animate={
                     done
@@ -78,11 +81,11 @@ export function LoadingDeliberation({ className }: { className?: string }) {
         </div>
       </div>
 
-      <div className="mt-6 h-[1px] w-full bg-[var(--divider)]" />
+      <div className="mt-6 h-[1px] w-full bg-terminal-line" />
 
       <div className="mt-4 font-body text-[12px] leading-6 text-ink-muted">
-        Signals are being reconciled against precedent. Confidence bands will
-        stabilize as each chamber returns.
+        Precedent signals reconcile like order-book depth filling — wait for
+        coalition detection before sizing verdict risk.
       </div>
     </div>
   );

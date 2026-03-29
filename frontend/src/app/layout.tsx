@@ -22,8 +22,9 @@ const fontMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Quorum",
-  description: "Judicial intelligence for markets.",
+  title: "Quorum · SCOTUS market terminal",
+  description:
+    "Multi-agent Supreme Court deliberation mapped to market implications — exchange-style UI.",
 };
 
 export default function RootLayout({

@@ -26,7 +26,7 @@ function Row({
       <span
         className={cn(
           "h-2 w-2 rounded-full",
-          state === "done" && "bg-affirm",
+          state === "done" && "bg-terminal-up",
           state === "running" && "animate-pulse bg-gold",
           state === "pending" && "bg-white/15",
         )}
@@ -34,7 +34,7 @@ function Row({
       <span
         className={cn(
           "font-mono text-[10px] tracking-[0.14em]",
-          state === "done" && "text-affirm",
+          state === "done" && "text-terminal-up",
           state === "running" && "text-gold",
           state === "pending" && "text-ink-faint",
         )}
@@ -65,7 +65,7 @@ export function DeliberationProgress({
       : null;
 
   return (
-    <div className="space-y-2 border-l border-[var(--divider)] pl-4">
+    <div className="space-y-2 border-l border-terminal-line pl-3">
       <Row
         label="Case prep"
         state={!started ? "pending" : completedJustices.length === 0 ? "running" : "done"}

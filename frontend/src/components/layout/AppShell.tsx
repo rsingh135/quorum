@@ -1,15 +1,16 @@
 "use client";
 
 import * as React from "react";
+import { Suspense } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/cn";
 
 const NAV = [
-  { href: "/", label: "FEED" },
-  { href: "/case/24-983", label: "ANALYZE" },
+  { href: "/", label: "MARKETS" },
+  { href: "/case/24-983", label: "CHART" },
   { href: "/portfolio", label: "PORTFOLIO" },
-  { href: "/ask", label: "ASK THE BENCH" },
+  { href: "/ask", label: "AGENTS" },
 ] as const;
 
 function NavLink({
@@ -34,12 +35,53 @@ function NavLink({
         "block rounded-xs border px-3 py-2 font-mono text-[11px] tracking-[0.14em] transition-colors",
         narrow && "px-2 text-center text-[10px]",
         active
-          ? "border-gold/50 bg-gold/10 text-gold"
-          : "border-white/10 bg-white/5 text-ink-muted hover:border-gold/30 hover:text-ink",
+          ? "border-terminal-up/45 bg-terminal-up/10 text-terminal-up"
+          : "border-terminal-line bg-black/30 text-ink-muted hover:border-terminal-up/25 hover:text-ink",
       )}
     >
       {children}
     </Link>
+  );
+}
+
+function MarketStrip() {
+  const pathname = usePathname();
+  const params = useSearchParams();
+  const sp500Lens = pathname === "/" && params.get("market")?.toUpperCase() === "SP500";
+
+  if (pathname !== "/") {
+    return (
+      <div className="border-l border-terminal-line pl-4 font-mono text-[10px] tracking-[0.18em] text-ink-faint">
+        DOCKET TERMINAL
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex items-center gap-1 border-l border-terminal-line pl-4">
+      <Link
+        href="/"
+        className={cn(
+          "rounded-xs border px-3 py-1 font-mono text-[10px] tracking-[0.2em] transition-colors",
+          !sp500Lens
+            ? "border-terminal-up/50 bg-terminal-up/15 text-terminal-up"
+            : "border-transparent text-ink-faint hover:text-ink-muted",
+        )}
+      >
+        SCOTUS
+      </Link>
+      <Link
+        href="/?market=SP500"
+        className={cn(
+          "rounded-xs border px-3 py-1 font-mono text-[10px] tracking-[0.2em] transition-colors",
+          sp500Lens
+            ? "border-terminal-up/50 bg-terminal-up/15 text-terminal-up"
+            : "border-transparent text-ink-faint hover:text-ink-muted",
+        )}
+      >
+        SP500
+      </Link>
+    </div>
   );
 }
 
@@ -48,29 +90,44 @@ function TopBar() {
   React.useEffect(() => {
     const fmt = () =>
       new Intl.DateTimeFormat("en-US", {
-        weekday: "short",
-        month: "short",
-        day: "numeric",
-        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+        timeZone: "America/New_York",
       }).format(new Date());
     setNow(fmt());
-    const t = setInterval(() => setNow(fmt()), 60_000);
+    const t = setInterval(() => setNow(fmt()), 1000);
     return () => clearInterval(t);
   }, []);
 
   return (
-    <header className="flex h-12 shrink-0 items-center justify-between border-b border-[var(--divider)] bg-[rgba(10,10,15,0.55)] px-6">
-      <div className="flex items-center gap-3">
-        <span className="relative inline-flex h-2 w-2">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-reverse opacity-60" />
-          <span className="relative inline-flex h-2 w-2 rounded-full bg-reverse" />
-        </span>
-        <span className="font-mono text-[11px] tracking-[0.18em] text-reverse">
-          LIVE TERM
-        </span>
+    <header className="flex h-11 shrink-0 items-center justify-between border-b border-terminal-line bg-terminal-panel px-4 backdrop-blur-sm">
+      <div className="flex min-w-0 flex-1 items-center gap-4">
+        <div className="flex items-center gap-2">
+          <span className="relative inline-flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-terminal-up opacity-50" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-terminal-up" />
+          </span>
+          <span className="hidden font-mono text-[10px] tracking-[0.22em] text-terminal-up sm:inline">
+            STREAM
+          </span>
+        </div>
+        <Suspense
+          fallback={
+            <div className="h-6 w-40 animate-pulse rounded-xs border border-terminal-line bg-black/20" />
+          }
+        >
+          <MarketStrip />
+        </Suspense>
+        <div className="hidden font-mono text-[10px] text-ink-faint lg:block">
+          <span className="text-ink-muted">trade.xyz–style lens</span>
+          <span className="mx-2 text-terminal-line">|</span>
+          <span>SCOTUS perp terminal (UI sim)</span>
+        </div>
       </div>
-      <div className="font-mono text-[11px] tracking-[0.12em] text-ink-muted">
-        {now || "—"}
+      <div className="shrink-0 font-mono text-[10px] tracking-[0.14em] text-ink-muted">
+        ET {now || "—"}
       </div>
     </header>
   );
@@ -78,27 +135,36 @@ function TopBar() {
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex min-h-screen">
-      <aside className="shell:flex hidden w-[240px] shrink-0 flex-col border-r border-[var(--divider)] bg-[rgba(10,10,15,0.85)] px-4 py-6">
-        <div className="font-heading text-[18px] tracking-[0.18em] text-gold">
-          QUORUM
-        </div>
-        <div className="mt-2 font-mono text-[10px] tracking-[0.18em] text-ink-faint">
-          CURRENT TERM · OT 2025
-        </div>
-        <nav className="mt-8 flex flex-col gap-2">
+    <div className="trade-terminal-root flex min-h-screen">
+      <aside className="shell:flex hidden w-[220px] shrink-0 flex-col border-r border-terminal-line bg-terminal-panel/95 px-3 py-5 backdrop-blur-sm">
+        <Link href="/" className="block">
+          <div className="font-mono text-[11px] font-semibold tracking-[0.28em] text-terminal-up">
+            QUORUM
+          </div>
+          <div className="mt-1 font-mono text-[9px] tracking-[0.18em] text-ink-faint">
+            SCOTUS · MARKET LENS
+          </div>
+        </Link>
+        <nav className="mt-8 flex flex-col gap-1.5">
           {NAV.map((item) => (
             <NavLink key={item.href} href={item.href}>
               {item.label}
             </NavLink>
           ))}
         </nav>
+        <div className="mt-auto pt-8 font-mono text-[9px] leading-relaxed tracking-[0.12em] text-ink-faint">
+          Eval-first: log traces, Sharpe-style risk bands, and implied sector
+          moves — per hackathon playbook.
+        </div>
       </aside>
 
-      <aside className="shell:hidden flex w-14 shrink-0 flex-col items-center border-r border-[var(--divider)] bg-[rgba(10,10,15,0.9)] py-4">
-        <div className="font-heading text-[11px] tracking-[0.2em] text-gold [writing-mode:vertical-rl]">
+      <aside className="shell:hidden flex w-12 shrink-0 flex-col items-center border-r border-terminal-line bg-terminal-panel py-4">
+        <Link
+          href="/"
+          className="font-mono text-[9px] tracking-[0.2em] text-terminal-up [writing-mode:vertical-rl]"
+        >
           QUORUM
-        </div>
+        </Link>
         <nav className="mt-6 flex flex-col gap-2">
           {NAV.map((item) => (
             <NavLink key={item.href} href={item.href} narrow>

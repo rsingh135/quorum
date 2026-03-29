@@ -15,6 +15,8 @@ export type CaseCardProps = {
   swingJustice: string;
   /** Tickers shown in hover tooltip */
   tickersAtRisk?: string[];
+  /** Compact watchlist row vs marketing card */
+  layout?: "card" | "row";
   className?: string;
 };
 
@@ -32,9 +34,73 @@ export function CaseCard({
   sector,
   swingJustice,
   tickersAtRisk,
+  layout = "card",
   className,
 }: CaseCardProps) {
   const pct = Math.round(Math.max(0, Math.min(1, probabilityAffirm)) * 100);
+
+  if (layout === "row") {
+    return (
+      <motion.div
+        initial={{ opacity: 0, x: -6 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.28, ease: "easeOut" }}
+        className={cn(
+          "group relative overflow-visible border-b border-terminal-line bg-black/20 px-3 py-3",
+          "transition-colors hover:bg-terminal-up/[0.04]",
+          className,
+        )}
+      >
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+          <div className="flex min-w-0 flex-1 items-start gap-3">
+            <div className="shrink-0 font-mono text-[12px] tracking-[0.16em] text-terminal-up">
+              {docket}
+            </div>
+            <div className="min-w-0">
+              <h3 className="truncate font-mono text-[12px] font-medium tracking-[0.06em] text-ink">
+                {name}
+              </h3>
+              <div className="mt-1 flex flex-wrap gap-2">
+                <span className="rounded-xs border border-terminal-line bg-black/30 px-1.5 py-0.5 font-mono text-[9px] tracking-[0.14em] text-ink-faint">
+                  {sector.toUpperCase()}
+                </span>
+                <span
+                  className={cn(
+                    "rounded-xs border px-1.5 py-0.5 font-mono text-[9px] tracking-[0.14em]",
+                    impactStyles(marketImpactLevel),
+                  )}
+                >
+                  {marketImpactLevel}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div className="flex shrink-0 items-center gap-6 sm:justify-end">
+            {tickersAtRisk?.length ? (
+              <div className="hidden font-mono text-[10px] text-ink-faint md:block">
+                {tickersAtRisk.slice(0, 4).join(" · ")}
+                {tickersAtRisk.length > 4 ? "…" : ""}
+              </div>
+            ) : null}
+            <div className="text-right">
+              <div className="font-mono text-[9px] tracking-[0.16em] text-ink-faint">
+                AFFIRM
+              </div>
+              <div
+                className={cn(
+                  "font-mono text-[18px] leading-none tracking-tight tabular-nums",
+                  pct >= 50 ? "text-terminal-up" : "text-terminal-down",
+                )}
+              >
+                {pct}
+                <span className="text-sm text-ink-faint">%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    );
+  }
 
   return (
     <motion.div
@@ -42,8 +108,8 @@ export function CaseCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.42, ease: "easeOut" }}
       className={cn(
-        "group relative overflow-visible rounded-xs border border-[var(--divider)] bg-[rgba(10,10,15,0.62)] p-4",
-        "transition-transform duration-200 ease-out hover:-translate-y-[2px] hover:shadow-ink",
+        "group relative overflow-visible rounded-xs border border-terminal-line bg-terminal-panel/80 p-4",
+        "transition-transform duration-200 ease-out hover:-translate-y-[1px] hover:border-terminal-up/25",
         className,
       )}
     >

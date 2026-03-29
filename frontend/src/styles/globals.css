@@ -12,6 +12,14 @@
   --divider: rgba(201, 168, 76, 0.2);
 
   --radius: 2px;
+
+  /* Perp-terminal accents (trade.xyz–style) */
+  --terminal-up: #3dff9c;
+  --terminal-down: #ff5c5c;
+  --terminal-grid: rgba(120, 255, 198, 0.04);
+  --terminal-ink: #e8e8ea;
+  --terminal-panel: rgba(12, 14, 18, 0.92);
+  --terminal-line: rgba(255, 255, 255, 0.06);
 }
 
 html,
@@ -21,15 +29,24 @@ body {
 
 body {
   background: radial-gradient(
-      1200px 520px at 54% 10%,
-      rgba(42, 63, 95, 0.22) 0%,
-      rgba(10, 10, 15, 0.95) 60%,
+      1400px 600px at 50% 0%,
+      rgba(31, 94, 74, 0.18) 0%,
+      rgba(10, 10, 15, 0.97) 45%,
       var(--bg) 100%
     ),
-    var(--bg);
+    linear-gradient(180deg, rgba(8, 12, 10, 1) 0%, var(--bg) 100%);
+  background-color: var(--bg);
   color: var(--ink);
   font-family: var(--font-body);
   letter-spacing: 0.01em;
+}
+
+/* Exchange-style fine grid (subtle) */
+.trade-terminal-root {
+  background-image: linear-gradient(var(--terminal-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--terminal-grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: -1px -1px;
 }
 
 /* Subtle vignette */

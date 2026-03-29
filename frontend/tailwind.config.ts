@@ -24,6 +24,12 @@ const config: Config = {
           muted: "rgba(232, 230, 223, 0.72)",
           faint: "rgba(232, 230, 223, 0.45)",
         },
+        terminal: {
+          up: "#3dff9c",
+          down: "#ff5c5c",
+          line: "rgba(255,255,255,0.06)",
+          panel: "rgba(12,14,18,0.92)",
+        },
       },
       fontFamily: {
         heading: ["var(--font-heading)", "serif"],

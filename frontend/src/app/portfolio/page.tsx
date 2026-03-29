@@ -63,12 +63,13 @@ export default function PortfolioPage() {
   }
 
   return (
-    <div className="px-6 py-10 shell:px-10">
-      <h1 className="font-heading text-[26px] tracking-[0.12em] text-gold">
-        PORTFOLIO MONITOR
+    <div className="px-4 py-6 shell:px-8">
+      <h1 className="font-mono text-[11px] tracking-[0.26em] text-terminal-up">
+        PORTFOLIO HEATMAP
       </h1>
       <p className="mt-2 max-w-[60ch] font-body text-[13px] text-ink-muted">
-        Enter tickers to cross-reference pending cases and exposure.
+        Cross-ticker SCOTUS exposure matrix — same “eval all positions” idea as
+        a risk dashboard (AI×Finance playbook).
       </p>
 
       <div className="mt-8 flex flex-wrap gap-2">
@@ -76,13 +77,13 @@ export default function PortfolioPage() {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="AAPL, PFE, XOM"
-          className="min-w-[240px] flex-1 rounded-xs border border-[var(--divider)] bg-[rgba(10,10,15,0.65)] px-3 py-2 font-mono text-[13px] text-ink"
+          className="min-w-[240px] flex-1 rounded-xs border border-terminal-line bg-terminal-panel px-3 py-2 font-mono text-[13px] text-ink"
         />
         <button
           type="button"
           disabled={loading}
           onClick={scan}
-          className="rounded-xs border border-gold/50 bg-gold/15 px-4 py-2 font-mono text-[11px] tracking-[0.16em] text-gold disabled:opacity-50"
+          className="rounded-xs border border-terminal-up/45 bg-terminal-up/12 px-4 py-2 font-mono text-[11px] tracking-[0.16em] text-terminal-up disabled:opacity-50"
         >
           SCAN
         </button>
@@ -96,7 +97,7 @@ export default function PortfolioPage() {
           <div className="mt-10 overflow-x-auto">
             <table className="w-full min-w-[640px] border-collapse font-mono text-[11px]">
               <thead>
-                <tr className="border-b border-[var(--divider)] text-left text-ink-faint">
+                <tr className="border-b border-terminal-line text-left text-ink-faint">
                   <th className="py-2 pr-4">TICKER</th>
                   {allCases.map(([docket, name]) => (
                     <th key={docket} className="max-w-[120px] px-1 py-2 align-bottom">
