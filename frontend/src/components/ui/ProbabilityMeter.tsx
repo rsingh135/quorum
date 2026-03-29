@@ -21,7 +21,7 @@ export function ProbabilityMeter({
   const pct = Math.round(p * 100);
 
   return (
-    <div className={cn("w-full", className)}>
+    <div className={cn("group w-full", className)}>
       <div className="flex items-end justify-between gap-4">
         <div className="font-mono text-[11px] tracking-[0.14em] text-ink-faint">
           PROBABILITY

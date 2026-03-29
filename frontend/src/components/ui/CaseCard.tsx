@@ -13,6 +13,8 @@ export type CaseCardProps = {
   marketImpactLevel: MarketImpactLevel;
   sector: string;
   swingJustice: string;
+  /** Tickers shown in hover tooltip */
+  tickersAtRisk?: string[];
   className?: string;
 };
 
@@ -29,6 +31,7 @@ export function CaseCard({
   marketImpactLevel,
   sector,
   swingJustice,
+  tickersAtRisk,
   className,
 }: CaseCardProps) {
   const pct = Math.round(Math.max(0, Math.min(1, probabilityAffirm)) * 100);
@@ -39,7 +42,7 @@ export function CaseCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.42, ease: "easeOut" }}
       className={cn(
-        "group relative overflow-hidden rounded-xs border border-[var(--divider)] bg-[rgba(10,10,15,0.62)] p-4",
+        "group relative overflow-visible rounded-xs border border-[var(--divider)] bg-[rgba(10,10,15,0.62)] p-4",
         "transition-transform duration-200 ease-out hover:-translate-y-[2px] hover:shadow-ink",
         className,
       )}
@@ -81,7 +84,7 @@ export function CaseCard({
           </div>
         </div>
 
-        <div className="shrink-0 text-right">
+        <div className="relative shrink-0 text-right">
           <div className="font-mono text-[11px] tracking-[0.14em] text-ink-faint">
             AFFIRM
           </div>
@@ -89,6 +92,25 @@ export function CaseCard({
             {pct}
             <span className="text-ink-faint">%</span>
           </div>
+          {tickersAtRisk?.length ? (
+            <div className="pointer-events-none absolute right-0 top-0 z-10 w-[140px] translate-x-full pl-3 opacity-0 transition-all duration-300 group-hover:pointer-events-auto group-hover:translate-x-0 group-hover:opacity-100">
+              <div className="rounded-xs border border-[var(--divider)] bg-[rgba(10,10,15,0.95)] p-2 shadow-ink">
+                <div className="font-mono text-[9px] tracking-[0.16em] text-gold/90">
+                  AT RISK
+                </div>
+                <ul className="mt-1 space-y-1 text-left">
+                  {tickersAtRisk.slice(0, 8).map((t) => (
+                    <li
+                      key={t}
+                      className="font-mono text-[11px] tracking-[0.14em] text-ink-muted"
+                    >
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ) : null}
         </div>
       </div>
     </motion.div>

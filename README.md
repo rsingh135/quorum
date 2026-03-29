@@ -63,3 +63,16 @@ Base URL: `http://localhost:8000/api` (set `NEXT_PUBLIC_API_URL` in the frontend
 
 Copy `backend/.env.example` → `backend/.env` and `frontend/.env.example` → `frontend/.env.local` as needed.
 
+Set `NEXT_PUBLIC_API_URL` to your FastAPI base (e.g. `http://127.0.0.1:8000`) so the Next.js app can call the API from the browser.
+
+## Frontend (Phase 5)
+
+Routes:
+
+- `/` — Case feed (filters, `CaseCard` grid, links to docket pages)
+- `/case/[docket]` — Full analysis: RUN ANALYSIS, SSE deliberation, bench grid, verdict, market block
+- `/ask` — Ask the Bench (multi-justice query)
+- `/portfolio` — Ticker scan vs pending cases + portfolio risk gauge
+
+Shell layout: left sidebar (collapses to icon rail below `1200px`), top bar with **LIVE TERM** and date.
+

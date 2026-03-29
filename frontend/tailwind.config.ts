@@ -5,6 +5,9 @@ const config: Config = {
   content: ["./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
+      screens: {
+        shell: "1200px",
+      },
       colors: {
         bg: {
           DEFAULT: "#0A0A0F",
