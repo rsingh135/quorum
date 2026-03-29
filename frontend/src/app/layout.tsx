@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { DM_Sans, DM_Serif_Display, IBM_Plex_Mono } from "next/font/google";
+import {
+  DM_Sans,
+  DM_Serif_Display,
+  IBM_Plex_Mono,
+  Inter,
+} from "next/font/google";
 import { AppShell } from "@/components/layout/AppShell";
 import "./globals.css";
 
@@ -21,6 +26,12 @@ const fontMono = IBM_Plex_Mono({
   weight: ["400", "500", "600"],
 });
 
+const fontTrade = Inter({
+  variable: "--font-trade",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
   title: "Quorum · SCOTUS market terminal",
   description:
@@ -35,9 +46,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fontHeading.variable} ${fontBody.variable} ${fontMono.variable} h-full antialiased`}
+      className={`${fontHeading.variable} ${fontBody.variable} ${fontMono.variable} ${fontTrade.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-bg text-ink font-body">
+      <body className="min-h-full min-h-[100dvh] bg-txyz-bg text-ink antialiased">
         <AppShell>{children}</AppShell>
       </body>
     </html>

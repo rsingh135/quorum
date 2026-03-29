@@ -30,11 +30,22 @@ const config: Config = {
           line: "rgba(255,255,255,0.06)",
           panel: "rgba(12,14,18,0.92)",
         },
+        /** trade.xyz reference palette */
+        txyz: {
+          bg: "#0b0b0c",
+          panel: "#121214",
+          panel2: "#18181b",
+          border: "#27272a",
+          muted: "#a1a1aa",
+          up: "#00e676",
+          down: "#ff5252",
+        },
       },
       fontFamily: {
         heading: ["var(--font-heading)", "serif"],
         body: ["var(--font-body)", "sans-serif"],
         mono: ["var(--font-mono)", "monospace"],
+        trade: ["var(--font-trade)", "system-ui", "sans-serif"],
       },
       borderRadius: {
         none: "0px",
@@ -61,10 +72,15 @@ const config: Config = {
           "0%": { opacity: "0", transform: "translateY(10px)" },
           "100%": { opacity: "1", transform: "translateY(0px)" },
         },
+        txyzTicker: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
       },
       animation: {
         shimmer: "shimmer 1.35s ease-in-out infinite",
         floatIn: "floatIn 420ms ease-out both",
+        "txyz-ticker": "txyzTicker 55s linear infinite",
       },
     },
   },
