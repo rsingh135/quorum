@@ -1,0 +1,72 @@
+:root {
+  --bg: #0a0a0f;
+  --panel: #2a3f5f;
+  --gold: #c9a84c;
+  --gold-muted: rgba(201, 168, 76, 0.2);
+  --affirm: #2ecc71;
+  --reverse: #e74c3c;
+  --ink: #e8e6df;
+  --ink-muted: rgba(232, 230, 223, 0.72);
+  --ink-faint: rgba(232, 230, 223, 0.45);
+
+  --divider: rgba(201, 168, 76, 0.2);
+
+  --radius: 2px;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: radial-gradient(
+      1200px 520px at 54% 10%,
+      rgba(42, 63, 95, 0.22) 0%,
+      rgba(10, 10, 15, 0.95) 60%,
+      var(--bg) 100%
+    ),
+    var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  letter-spacing: 0.01em;
+}
+
+/* Marble/noise overlay (3% opacity) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.03;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj4KICA8ZmlsdGVyIGlkPSJuIj4KICAgIDxmZVR1cmJ1bGVuY2UgdHlwZT0iZnJhY3RhbE5vaXNlIiBiYXNlRnJlcXVlbmN5PSIwLjgiIG51bU9jdGF2ZXM9IjQiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz4KICAgIDxmZUNvbG9yTWF0cml4IHR5cGU9Im1hdHJpeCIgdmFsdWVzPSIxIDAgMCAwIDAgIDAgMSAwIDAgMCAgMCAwIDEgMCAwICAwIDAgMCAwLjM1IDAiLz4KICA8L2ZpbHRlcj4KICA8cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsdGVyPSJ1cmwoI24pIi8+Cjwvc3ZnPg==");
+  background-size: 280px 280px;
+}
+
+/* Ensure app content sits above the overlay */
+#__next {
+  position: relative;
+  z-index: 1;
+}
+
+* {
+  scrollbar-color: rgba(201, 168, 76, 0.35) rgba(42, 63, 95, 0.22);
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(42, 63, 95, 0.18);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(201, 168, 76, 0.35);
+  border: 2px solid rgba(10, 10, 15, 0.8);
+  border-radius: 999px;
+}
+
