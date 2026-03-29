@@ -49,11 +49,13 @@ export function ProbabilityMeter({
           </div>
 
           <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="absolute inset-0 origin-left"
-          />
+            className="absolute inset-0"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gold/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          </motion.div>
 
           <motion.div
             initial={{ left: "0%" }}

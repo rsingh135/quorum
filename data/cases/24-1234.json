@@ -1,0 +1,15 @@
+{
+  "docket": "24-1234",
+  "name": "United States v. Hemani",
+  "short_description": "A Second Amendment challenge to the federal ban on firearm possession by unlawful users of controlled substances.",
+  "legal_question": "Whether 18 U.S.C. § 922(g)(3), which prohibits firearm possession by a person who is an unlawful user of or addicted to a controlled substance, violates the Second Amendment as applied to the respondent.",
+  "petitioner_argument_summary": "The United States argues § 922(g)(3) is consistent with the Nation’s historical tradition of firearm regulation and that disarming unlawful drug users is permissible under the Second Amendment framework.",
+  "respondent_argument_summary": "Respondent argues § 922(g)(3) lacks a sufficiently analogous historical tradition and that the statute is unconstitutional as applied.",
+  "lower_court_ruling": "affirmed",
+  "lower_court": "5th Circuit",
+  "oral_argument_date": "2026-03-02",
+  "sectors_affected": ["defense", "consumer"],
+  "tickers_at_risk": ["SWBI", "RGR"],
+  "market_impact_level": "MEDIUM"
+}
+

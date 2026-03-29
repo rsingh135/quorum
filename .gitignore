@@ -13,9 +13,13 @@
 **/yarn-error.log*
 **/.pnpm-debug.log*
 
-# Env (never commit secrets)
+# Env (never commit secrets) — allow *.env.example
 **/.env
-**/.env.*
+**/.env.local
+**/.env.development.local
+**/.env.test.local
+**/.env.production.local
+!**/.env.example
 
 # Python / FastAPI
 **/__pycache__/
@@ -25,9 +29,17 @@
 **/.ruff_cache/
 **/.venv/
 **/venv/
+*.egg-info/
+dist/
 .python-version
 
-# Editor
+# Large ingested justice opinion chunks (CourtListener / RAG)
+**/data/justices/*/opinions/*.json
+
+# Cursor / IDE
 .idea/
 .vscode/
+.cursor/
 
+# OS
+Thumbs.db

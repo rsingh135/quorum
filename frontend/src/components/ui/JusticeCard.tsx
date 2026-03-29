@@ -60,11 +60,12 @@ export function JusticeCard({
       layout
       className={cn(
         "group relative overflow-hidden rounded-xs border border-gold-muted bg-[rgba(10,10,15,0.65)]",
-        "backdrop-blur-[2px]",
+        "backdrop-blur-[3px]",
         styles.glow,
         className,
       )}
     >
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-gold/25 to-transparent opacity-70" />
       <div
         className={cn(
           "pointer-events-none absolute inset-0 opacity-60",
@@ -79,10 +80,13 @@ export function JusticeCard({
         className={cn(
           "relative z-[1] w-full text-left p-4",
           "transition-transform duration-200 ease-out",
-          "hover:-translate-y-[1px] hover:shadow-gold",
+          "hover:-translate-y-[2px] hover:shadow-ink",
           "focus:outline-none focus-visible:ring-1 focus-visible:ring-gold/60",
         )}
       >
+        <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          <div className="absolute -left-24 -top-28 h-64 w-64 rounded-full bg-gold/10 blur-2xl" />
+        </div>
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
             <div className="flex items-baseline gap-2">

@@ -1,0 +1,15 @@
+{
+  "docket": "24-983",
+  "name": "Havana Docks Corp. v. Royal Caribbean Cruises, Ltd.",
+  "short_description": "A Helms-Burton Act Title III suit challenging alleged trafficking in confiscated Cuban property.",
+  "legal_question": "Whether a plaintiff bringing a claim under Title III of the Cuban Liberty and Democratic Solidarity (LIBERTAD) Act must show that the defendant trafficked in property as to which the plaintiff held a claim at the time of trafficking, or instead that the defendant trafficked in property the plaintiff would have owned in a counterfactual world without the expropriation.",
+  "petitioner_argument_summary": "Petitioner argues Title III requires only that the plaintiff own a certified claim to the confiscated property and that the defendant trafficked in that property, without additional counterfactual ownership requirements at the time of trafficking.",
+  "respondent_argument_summary": "Respondent argues the right of action is limited to property interests the plaintiff would have held at the time of the alleged trafficking, and that Title III does not create liability based on counterfactual ownership theories.",
+  "lower_court_ruling": "affirmed",
+  "lower_court": "11th Circuit",
+  "oral_argument_date": "2026-02-23",
+  "sectors_affected": ["travel", "cruise"],
+  "tickers_at_risk": ["RCL", "NCLH", "CCL"],
+  "market_impact_level": "MEDIUM"
+}
+

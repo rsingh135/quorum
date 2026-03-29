@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/cn";
 
 export type MarketImpactLevel = "HIGH" | "MEDIUM" | "LOW";
@@ -33,13 +34,23 @@ export function CaseCard({
   const pct = Math.round(Math.max(0, Math.min(1, probabilityAffirm)) * 100);
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.42, ease: "easeOut" }}
       className={cn(
-        "relative overflow-hidden rounded-xs border border-[var(--divider)] bg-[rgba(10,10,15,0.62)] p-4",
-        "transition-transform duration-200 ease-out hover:-translate-y-[1px] hover:shadow-gold",
+        "group relative overflow-hidden rounded-xs border border-[var(--divider)] bg-[rgba(10,10,15,0.62)] p-4",
+        "transition-transform duration-200 ease-out hover:-translate-y-[2px] hover:shadow-ink",
         className,
       )}
     >
+      <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+        <div className="absolute -left-24 -top-24 h-64 w-64 rounded-full bg-gold/10 blur-2xl" />
+        <div className="absolute -right-28 -bottom-24 h-64 w-64 rounded-full bg-bg-panel/20 blur-2xl" />
+      </div>
+
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-gold/25 to-transparent opacity-60" />
+
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <div className="flex items-center gap-2">
@@ -56,7 +67,7 @@ export function CaseCard({
             </span>
           </div>
 
-          <h3 className="mt-3 font-heading text-[16px] tracking-[0.05em] text-ink">
+          <h3 className="mt-3 font-heading text-[16px] tracking-[0.06em] text-ink">
             {name}
           </h3>
 
@@ -80,7 +91,7 @@ export function CaseCard({
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

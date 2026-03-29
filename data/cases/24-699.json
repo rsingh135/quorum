@@ -1,0 +1,15 @@
+{
+  "docket": "24-699",
+  "name": "Exxon Mobil Corp. v. Corporación Cimex, S.A. (Cuba)",
+  "short_description": "A Helms-Burton Act case testing the relationship between Title III and foreign sovereign immunity defenses.",
+  "legal_question": "Whether Title III of the LIBERTAD (Helms-Burton) Act abrogates foreign sovereign immunity for suits against Cuban instrumentalities, or whether a plaintiff must also satisfy an exception under the Foreign Sovereign Immunities Act.",
+  "petitioner_argument_summary": "Petitioner argues Congress created a direct cause of action under Helms-Burton that permits Title III suits against Cuban instrumentalities and that FSIA immunity should not bar those claims.",
+  "respondent_argument_summary": "Respondent argues FSIA provides the default rule of immunity for foreign states and their instrumentalities and that Helms-Burton does not displace FSIA absent a clearly applicable exception.",
+  "lower_court_ruling": "affirmed",
+  "lower_court": "D.C. Circuit",
+  "oral_argument_date": "2026-02-23",
+  "sectors_affected": ["energy", "oil-gas"],
+  "tickers_at_risk": ["XOM"],
+  "market_impact_level": "LOW"
+}
+

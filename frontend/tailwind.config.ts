@@ -41,15 +41,21 @@ const config: Config = {
         lift: "0 18px 40px rgba(0,0,0,0.55)",
         glowAffirm: "0 0 0 1px rgba(46,204,113,0.35), 0 0 22px rgba(46,204,113,0.18)",
         glowReverse: "0 0 0 1px rgba(231,76,60,0.35), 0 0 22px rgba(231,76,60,0.18)",
+        ink: "0 0 0 1px rgba(232,230,223,0.08), 0 18px 44px rgba(0,0,0,0.55)",
       },
       keyframes: {
         shimmer: {
           "0%": { backgroundPosition: "-200% 0" },
           "100%": { backgroundPosition: "200% 0" },
         },
+        floatIn: {
+          "0%": { opacity: "0", transform: "translateY(10px)" },
+          "100%": { opacity: "1", transform: "translateY(0px)" },
+        },
       },
       animation: {
         shimmer: "shimmer 1.35s ease-in-out infinite",
+        floatIn: "floatIn 420ms ease-out both",
       },
     },
   },

@@ -1,0 +1,15 @@
+{
+  "docket": "24-783",
+  "name": "Enbridge Energy, LP v. Nessel",
+  "short_description": "A civil procedure dispute over whether federal courts can excuse an untimely notice of removal under the removal statute.",
+  "legal_question": "Whether district courts have authority to excuse (including through equitable tolling) the 30-day deadline for removal in 28 U.S.C. § 1446(b)(1) when a case is removed from state to federal court.",
+  "petitioner_argument_summary": "Petitioner argues the 30-day removal deadline is non-jurisdictional and may be equitably tolled or otherwise excused in appropriate circumstances.",
+  "respondent_argument_summary": "Respondent argues the removal deadline is mandatory and that a timely motion to remand requires remand when removal is untimely, without equitable exceptions.",
+  "lower_court_ruling": "reversed",
+  "lower_court": "6th Circuit",
+  "oral_argument_date": "2026-02-24",
+  "sectors_affected": ["energy", "midstream"],
+  "tickers_at_risk": ["ENB"],
+  "market_impact_level": "LOW"
+}
+
